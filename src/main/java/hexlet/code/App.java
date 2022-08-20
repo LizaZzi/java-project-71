@@ -22,7 +22,7 @@ public class App implements Callable {
 
     @Override
     public Object call() throws Exception {
-        return null;
+        return JsonDiff.getJsonDiff(filepath1, filepath2);
     }
 
     public static void main(String[] args) {
