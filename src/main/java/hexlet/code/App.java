@@ -5,7 +5,6 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Command;
 
-import java.io.IOException;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
@@ -25,7 +24,7 @@ public class App implements Callable {
     public String call() {
         String resultDiff = null;
         try {
-            resultDiff = JsonDiff.getJsonDiff(filepath1, filepath2);
+            resultDiff = Differ.generate(filepath1, filepath2);
             System.out.println(resultDiff);
         } catch (Exception e) {
             System.out.println(e.getMessage());

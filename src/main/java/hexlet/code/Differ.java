@@ -7,11 +7,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class JsonDiff {
+public class Differ {
     private static Map<String, Object> getData(File json) throws IOException {
         return new ObjectMapper().readValue(json, new TypeReference<Map<String,Object>>(){});
     }
-    public static String getJsonDiff(String filePath1, String filePath2) throws IOException {
+    public static String generate(String filePath1, String filePath2) throws IOException {
         File file1 = new File(filePath1);
         File file2 = new File(filePath2);
         Map<String, Object> fileMap1 = getData(file1);
