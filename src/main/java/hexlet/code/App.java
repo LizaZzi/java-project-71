@@ -20,6 +20,10 @@ public class App implements Callable {
             defaultValue = "stylish")
     private String format = "stylish";
 
+    /**
+     * Вызов метода сравнение плоских json.
+     * Путь к файлу передан через cmd.
+     */
     @Override
     public String call() {
         String resultDiff = null;
