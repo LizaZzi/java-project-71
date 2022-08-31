@@ -3,12 +3,39 @@
  */
 package hexlet.code;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    private final PrintStream printStreamOut = System.out;
+    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setUpStreams() {
+        System.setOut(new PrintStream(output));
+    }
+    @Test
+    public void appTest() {
+        String exp = """
+                {
+                  - host:hexlet.io
+                  - timeout:20
+                  - verbose:true
+                }
+                """;
+        String[] arg = {"/home/kisya/file1.json", "/home/kisya/file2.json"};
+        App.main(arg);
+        assertEquals(exp.trim(), output.toString().trim());
+    }
+
+    @AfterEach
+    public void setDownStreams() {
+        System.setOut(printStreamOut);
     }
 }
