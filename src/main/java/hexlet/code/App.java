@@ -38,6 +38,6 @@ public class App implements Callable {
 
     public static void main(String[] args) {
         CommandLine commandLine = new CommandLine(new App());
-        System.exit(commandLine.execute(args));
+        commandLine.execute(args);
     }
 }
