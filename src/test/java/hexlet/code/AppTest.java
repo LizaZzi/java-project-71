@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AppTest {
     private final PrintStream printStreamOut = System.out;
@@ -25,13 +25,15 @@ class AppTest {
         String exp = """
                 {
                   - host:hexlet.io
+                  - key:value
                   - timeout:20
                   - verbose:true
                 }
                 """;
-        String[] arg = {"/home/kisya/file1.json", "/home/kisya/file2.json"};
+        String[] arg = {"./src/test/resources/file1.json", "./src/test/resources/empty.json"};
         App.main(arg);
-        assertEquals(exp.trim(), output.toString().trim());
+        assertEquals(exp.trim(), output.toString().trim(),
+                "Проверка вызова сравнения из метода main");
     }
 
     @AfterEach
