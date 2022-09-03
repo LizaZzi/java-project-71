@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
     private final PrintStream printStreamOut = System.out;
@@ -30,10 +30,19 @@ class AppTest {
                   - verbose:true
                 }
                 """;
-        String[] arg = {"./src/test/resources/file1.json", "./src/test/resources/empty.json"};
+        String[] arg = {"./src/test/resources/fil.json", "./src/test/resources/empty.json"};
         App.main(arg);
         assertEquals(exp.trim(), output.toString().trim(),
                 "Проверка вызова сравнения из метода main");
+    }
+
+    @Test
+    public void exceptionTest() {
+        String[] arg = {"./src/test/resources/x", "./src/test/resources/file1.json"};
+        App.main(arg);
+
+        assertTrue(output.toString().trim().contains("Нет такого файла или каталога"),
+                "Проверка вывода ошибки поиска файла" );
     }
 
     @AfterEach
