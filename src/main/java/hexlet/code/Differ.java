@@ -38,7 +38,7 @@ public class Differ {
                 }
             } else if (fileMap1.containsKey(key) && !fileMap2.containsKey(key)) {
                 result.append("\n  - ").append(key).append(":").append(fileMap1.get(key));
-            } else {
+            } else if (!fileMap1.containsKey(key) && fileMap2.containsKey(key)) {
                 result.append("\n  + ").append(key).append(":").append(fileMap2.get(key));
             }
         });
