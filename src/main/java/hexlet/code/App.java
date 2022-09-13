@@ -18,7 +18,8 @@ public class App implements Callable {
     @Option(names = { "-f", "--format" },
             description = "output format [default: stylish]",
             defaultValue = "stylish")
-    private String format = "stylish";
+
+    private String format;
 
     /**
      * Вызов метода сравнение плоских json.

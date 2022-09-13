@@ -31,7 +31,15 @@ public class Differ {
         StringBuilder result = new StringBuilder("{");
         keySet.forEach(key -> {
             if (fileMap1.containsKey(key) && fileMap2.containsKey(key)) {
-                if (fileMap2.get(key).equals(fileMap1.get(key))) {
+                if (fileMap2.get(key) == null & fileMap1.get(key) == null) {
+                    result.append("\n    ").append(key.concat(": null"));
+                } else if (fileMap2.get(key) == null & fileMap1.get(key) != null) {
+                    result.append("\n  - ").append(getStringDiff(fileMap1, key));
+                    result.append("\n  + ").append(key.concat(": null"));
+                } else if (fileMap1.get(key) == null & fileMap2.get(key) != null) {
+                    result.append("\n  - ").append(key.concat(": null"));
+                    result.append("\n  + ").append(getStringDiff(fileMap2, key));
+                } else if (fileMap2.get(key).equals(fileMap1.get(key))) {
                     result.append("\n    ").append(getStringDiff(fileMap1, key));
                 } else {
                     result.append("\n  - ").append(getStringDiff(fileMap1, key));
